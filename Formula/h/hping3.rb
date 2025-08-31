@@ -5,9 +5,8 @@ class Hping3 < Formula
   sha256 "6a530f2d3ccf26766cb662c9e5ffc651e1e707a667b34962b42a41157ec619c4"
   license "GPL-2.0-or-later"
 
-  # Sort dependencies in alphabetical order
-  depends_on "libpcap"
   depends_on "pkgconf" => :build
+  depends_on "libpcap"
   depends_on "tcl-tk"
 
   def install
