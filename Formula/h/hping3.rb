@@ -9,7 +9,33 @@ class Hping3 < Formula
   depends_on "libpcap"
   depends_on "tcl-tk"
 
+  on_linux do
+    depends_on "gcc" => :build
+    depends_on "make" => :build
+    depends_on "zlib"
+  end
+
   def install
+    # Configure, build and install tcl on Linux
+    if OS.linux?
+      tcl_version = "9.0.2"
+      tcl_pkg = "tcl${tcl_version}-src.tar.gz"
+      tcl_url = "https://prdownloads.sourceforge.net/tcl/${tcl_pkg}"
+
+      system "wget", tcl_url
+      system "tar", "xzf", tcl_pkg
+      Dir.chdir("tcl${tcl_version}/unix") do
+        system "./configure", "--prefix=#{buildpath}/tcl"
+        system "make", "install"
+      end
+
+      ENV.prepend_path "PATH", "#{buildpath}/tcl/bin"
+      ENV.prepend_path "PKG_CONFIG_PATH", "#{buildpath}/tcl/lib/pkgconfig"
+      ENV.prepend "CPATH", "#{buildpath}/tcl/include"
+      ENV.prepend "LIBRARY_PATH", "#{buildpath}/tcl/lib"
+    end
+
+    # Configure, build and install hping3
     system "./configure", "--disable-debug",
                           "--disable-dependency-tracking",
                           "--disable-silent-rules",
