@@ -6,9 +6,9 @@ class Hping3 < Formula
   license "GPL-2.0-or-later"
 
   # Sort dependencies in alphabetical order
-  depends_on "libpcap" => :build
+  depends_on "libpcap"
   depends_on "pkgconf" => :build
-  depends_on "tcl-tk" => :build
+  depends_on "tcl-tk"
 
   def install
     system "./configure", "--disable-debug",
