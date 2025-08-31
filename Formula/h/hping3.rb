@@ -15,20 +15,21 @@ class Hping3 < Formula
     depends_on "zlib"
   end
 
+  resource "tcl" do
+    url "https://downloads.sourceforge.net/project/tcl/Tcl/9.0.2/tcl9.0.2-src.tar.gz"
+    sha256 "e074c6a8d9ba2cddf914ba97b6677a552d7a52a3ca102924389a05ccb249b520"
+  end
+
   def install
     # Configure, build and install tcl on Linux
     if OS.linux?
-      tcl_version = "9.0.2"
-      tcl_pkg = "tcl#{tcl_version}-src.tar.gz"
-      tcl_url = "https://prdownloads.sourceforge.net/tcl/#{tcl_pkg}"
-
-      system "wget", tcl_url
-      system "tar", "xzf", tcl_pkg
-      Dir.chdir("tcl#{tcl_version}/unix") do
-        system "./configure", "--prefix=#{buildpath}/tcl"
-        system "make", "install"
+      resource("tcl").stage do
+        Dir.chdir("unix") do
+          system "./configure", "--prefix=#{buildpath}/tcl"
+          system "make"
+          system "make", "install"
+        end
       end
-
       ENV.prepend_path "PATH", "#{buildpath}/tcl/bin"
       ENV.prepend_path "PKG_CONFIG_PATH", "#{buildpath}/tcl/lib/pkgconfig"
       ENV.prepend "CPATH", "#{buildpath}/tcl/include"
