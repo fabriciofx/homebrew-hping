@@ -2,7 +2,7 @@ class Hping3 < Formula
   desc "Network tool able to send custom TCP/IP packets"
   homepage "https://github.com/fabriciofx/hping"
   url "https://github.com/fabriciofx/hping/releases/download/3.0.0/hping3-3.0.0.tar.gz"
-  sha256 "6a530f2d3ccf26766cb662c9e5ffc651e1e707a667b34962b42a41157ec619c4"
+  sha256 "e6f92c64bb3bed5397b7e0303686231c9192143436e4bfb0e30fd8a3f68fd612"
   license "GPL-2.0-or-later"
 
   depends_on "pkgconf" => :build
