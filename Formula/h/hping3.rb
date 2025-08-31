@@ -6,8 +6,10 @@ class Hping3 < Formula
   license "GPL-2.0-or-later"
 
   depends_on "pkgconf" => :build
-  depends_on "libpcap"
   depends_on "tcl-tk"
+
+  # Uses already installed libpcap in macOS. In Linux, install it
+  uses_from_macos "libpcap"
 
   on_linux do
     depends_on "gcc" => :build
