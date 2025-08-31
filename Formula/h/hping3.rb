@@ -19,12 +19,12 @@ class Hping3 < Formula
     # Configure, build and install tcl on Linux
     if OS.linux?
       tcl_version = "9.0.2"
-      tcl_pkg = "tcl${tcl_version}-src.tar.gz"
-      tcl_url = "https://prdownloads.sourceforge.net/tcl/${tcl_pkg}"
+      tcl_pkg = "tcl#{tcl_version}-src.tar.gz"
+      tcl_url = "https://prdownloads.sourceforge.net/tcl/#{tcl_pkg}"
 
       system "wget", tcl_url
       system "tar", "xzf", tcl_pkg
-      Dir.chdir("tcl${tcl_version}/unix") do
+      Dir.chdir("tcl#{tcl_version}/unix") do
         system "./configure", "--prefix=#{buildpath}/tcl"
         system "make", "install"
       end
