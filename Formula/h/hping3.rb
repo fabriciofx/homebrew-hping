@@ -37,8 +37,7 @@ class Hping3 < Formula
     end
 
     # Configure, build and install hping3
-    system "./configure", "--disable-debug",
-                          "--disable-dependency-tracking",
+    system "./configure", "--disable-dependency-tracking",
                           "--disable-silent-rules",
                           "--prefix=#{prefix}"
     system "make", "install"
