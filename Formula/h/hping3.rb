@@ -8,8 +8,9 @@ class Hping3 < Formula
   depends_on "pkgconf" => :build
   depends_on "tcl-tk"
 
+  uses_from_macos "libpcap"
+
   on_macos do
-    uses_from_macos "libpcap"
     depends_on "libpcap" => :build
   end
 
