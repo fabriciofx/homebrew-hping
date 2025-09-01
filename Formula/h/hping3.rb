@@ -43,6 +43,14 @@ class Hping3 < Formula
     system "make", "install"
   end
 
+  def caveats
+    <<~EOS
+      hping3 requires root privileges so you will need to run
+      `sudo hping3`.
+      You should be certain that you trust any software you grant root privileges.
+    EOS
+  end
+
   test do
     assert_path_exists bin/"hping3"
     assert_match "hping", shell_output("#{bin}/hping3 --help")
