@@ -6,12 +6,17 @@ class Hping3 < Formula
   license "GPL-2.0-or-later"
 
   depends_on "pkgconf" => :build
-  depends_on "libpcap"
   depends_on "tcl-tk"
+
+  on_macos do
+    uses_from_macos "libpcap"
+    depends_on "libpcap" => :build
+  end
 
   on_linux do
     depends_on "gcc" => :build
     depends_on "make" => :build
+    depends_on "libpcap"
     depends_on "zlib"
   end
 
