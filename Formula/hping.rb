@@ -19,11 +19,11 @@ class Hping < Formula
     depends_on "make" => :build
     depends_on "libpcap"
     depends_on "zlib"
-  end
 
-  resource "tcl" do
-    url "https://downloads.sourceforge.net/project/tcl/Tcl/9.0.2/tcl9.0.2-src.tar.gz"
-    sha256 "e074c6a8d9ba2cddf914ba97b6677a552d7a52a3ca102924389a05ccb249b520"
+    resource "tcl" do
+      url "https://downloads.sourceforge.net/project/tcl/Tcl/9.0.2/tcl9.0.2-src.tar.gz"
+      sha256 "e074c6a8d9ba2cddf914ba97b6677a552d7a52a3ca102924389a05ccb249b520"
+    end
   end
 
   def install
