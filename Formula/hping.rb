@@ -6,43 +6,10 @@ class Hping < Formula
   license "GPL-2.0-or-later"
 
   depends_on "pkgconf" => :build
+  depends_on "libpcap"
   depends_on "tcl-tk"
 
-  uses_from_macos "libpcap"
-
-  on_macos do
-    depends_on "libpcap" => :build
-  end
-
-  on_linux do
-    depends_on "gcc" => :build
-    depends_on "make" => :build
-    depends_on "libpcap"
-    depends_on "zlib"
-
-    resource "tcl" do
-      url "https://downloads.sourceforge.net/project/tcl/Tcl/9.0.2/tcl9.0.2-src.tar.gz"
-      sha256 "e074c6a8d9ba2cddf914ba97b6677a552d7a52a3ca102924389a05ccb249b520"
-    end
-  end
-
   def install
-    # Configure, build and install tcl on Linux
-    if OS.linux?
-      resource("tcl").stage do
-        Dir.chdir("unix") do
-          system "./configure", "--prefix=#{buildpath}/tcl"
-          system "make"
-          system "make", "install"
-        end
-      end
-      ENV.prepend_path "PATH", "#{buildpath}/tcl/bin"
-      ENV.prepend_path "PKG_CONFIG_PATH", "#{buildpath}/tcl/lib/pkgconfig"
-      ENV.prepend "CPATH", "#{buildpath}/tcl/include"
-      ENV.prepend "LIBRARY_PATH", "#{buildpath}/tcl/lib"
-    end
-
-    # Configure, build and install hping
     system "./configure", "--disable-dependency-tracking",
                           "--disable-silent-rules",
                           "--prefix=#{prefix}"
