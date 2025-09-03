@@ -38,9 +38,10 @@ class Program < Formula
   uses_from_macos "libpcap"
 
   def install
-    system "./configure", "--disable-dependency-tracking",
-                          "--disable-silent-rules",
-                          "--prefix=#{prefix}"
+    system "./configure",
+           "--disable-dependency-tracking",
+           "--disable-silent-rules",
+           "--prefix=#{prefix}"
     system "make", "install"
   end
 
