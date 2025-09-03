@@ -1,16 +1,9 @@
-class Hping3 < Formula
+class Hping < Formula
   desc "Network tool able to send custom TCP/IP packets"
-  homepage "https://github.com/antirez/hping"
-  url "https://github.com/antirez/hping/archive/3547c7691742c6eaa31f8402e0ccbb81387c1b99.tar.gz"
-  sha256 "f4fad0197f493fa78546045dbc6da4040c2c80fc4e33b8d320af6b15dab19519"
+  homepage "https://github.com/fabriciofx/hping"
+  url "https://github.com/fabriciofx/hping/releases/download/3.0.0/hping3-3.0.0.tar.gz"
+  sha256 "38c0091e8d38856cd683b99e7249458ef572a21de808e251c8b4ee144c32b875"
   license "GPL-2.0-or-later"
-
-  head do
-    url "https://github.com/fabriciofx/hping.git", branch: "master"
-    depends_on "autoconf" => :build
-    depends_on "automake" => :build
-    depends_on "libtool" => :build
-  end
 
   depends_on "pkgconf" => :build
   depends_on "tcl-tk"
@@ -49,8 +42,7 @@ class Hping3 < Formula
       ENV.prepend "LIBRARY_PATH", "#{buildpath}/tcl/lib"
     end
 
-    # Configure, build and install hping3
-    system "./autogen.sh" if build.head?
+    # Configure, build and install hping
     system "./configure", "--disable-dependency-tracking",
                           "--disable-silent-rules",
                           "--prefix=#{prefix}"
