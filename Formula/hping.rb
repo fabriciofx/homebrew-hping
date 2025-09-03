@@ -18,9 +18,9 @@ class Hping < Formula
 
   def caveats
     <<~EOS
-      hping3 requires root privileges so you will need to run
-      `sudo hping3`.
-      You should be certain that you trust any software you grant root privileges.
+      hping3 requires root privileges so you will need to run `sudo hping3`.
+      You should be certain that you trust any software you grant root
+      privileges.
     EOS
   end
 
